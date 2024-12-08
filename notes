@@ -53,3 +53,36 @@ databricks workspace ls
 Run sample SPARTA application:
 Execute a test SPARTA application or script to confirm dependencies and frameworks are properly configured.
 By meeting these prerequisites, developers can efficiently create and deploy Databricks applications using the SPARTA Framework.
+
+
+
+
+
+
+Key Accomplishments
+SPARTA Library Installation and Publishing to Artifactory
+
+Successfully installed the SPARTA library and published it to Artifactory.
+Blocker: Artifactory credentials were initially preventing the publication.
+Resolution: Blocker resolved, and the CI pipeline execution is now working as expected.
+CI Pipeline Working with GitHub Actions
+
+Integrated GitHub Actions and GitHub runners for the CI pipeline.
+Acceptance Criteria Met: Both linting and unit tests are executing successfully.
+Blocker: Initial setup was causing failure during integration.
+Resolution: After adjustments, the pipeline is now stable and performing as expected.
+Shallow Cloning for Delta Tables in Databricks
+
+Scripts for shallow cloning Delta tables in Databricks are prepared and reviewed as part of initial steps.
+Blocker: Final testing and integration with larger datasets.
+Resolution: Scripts reviewed and minor adjustments are underway.
+Databricks Assets Bundling Configuration and Setup
+
+80% of the setup for Databricks assets bundling has been completed.
+Blocker: Creating a second databricks.yaml configuration for asset bundling is still in progress.
+Resolution: The configuration file for DBX asset bundling is being finalized.
+SQL Parser with Unit Test Cases
+
+SQL Parser functionality with unit test cases using Pandas DataFrames and PySpark code is in progress.
+Blocker: Optimizing performance for large-scale datasets.
+Resolution: Unit tests are being fine-tuned and will be completed shortly.
