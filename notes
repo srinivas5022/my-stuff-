@@ -1,0 +1,55 @@
+Prerequisites for Developer Access
+The following are the tools and assumptions required for developers to work on creating Databricks applications using the SPARTA Framework.
+
+1. Desktop Developer Tools
+Purpose: Ensure developers have a consistent environment for building, testing, and deploying Databricks applications using SPARTA.
+2. Required Tools and Software
+Visual Studio Code:
+
+Lightweight code editor for editing Python, YAML, and configuration files.
+Recommended Extensions: Python, YAML, and Git extensions for enhanced productivity.
+Git CLI:
+
+For managing source control and performing Git operations directly from the command line.
+Ensure proper configuration of Git username, email, and authentication (e.g., SSH keys or personal access tokens).
+Databricks CLI:
+
+Used for automating interactions with Databricks workspace via command line.
+Setup: Configure Databricks CLI by running:
+bash
+Copy code
+databricks configure  
+Provide the necessary workspace URL and authentication token.
+Python (3.8 or later):
+
+Required for developing and testing SPARTA framework applications.
+Ensure the necessary libraries are installed by executing:
+bash
+Copy code
+pip install -r requirements.txt  
+SPARTA Framework Components:
+
+Download and install the SPARTA library or modules required for developing Databricks applications.
+Follow the SPARTA framework documentation for additional dependencies and configuration.
+3. Environment Setup
+Operating System: Ensure compatibility with tools (Windows/macOS/Linux).
+Access Permissions:
+GitHub repository access for cloning SPARTA framework repositories.
+Databricks workspace access with appropriate permissions for creating applications and workflows.
+Required tokens or credentials to interact with Databricks and other APIs.
+Networking:
+Verify access to required endpoints (e.g., Databricks REST API, artifact repositories).
+4. Testing and Validation
+To ensure everything is set up correctly:
+
+Clone the SPARTA repository:
+bash
+Copy code
+git clone <SPARTA-repository-url>  
+Validate Databricks CLI connection:
+bash
+Copy code
+databricks workspace ls  
+Run sample SPARTA application:
+Execute a test SPARTA application or script to confirm dependencies and frameworks are properly configured.
+By meeting these prerequisites, developers can efficiently create and deploy Databricks applications using the SPARTA Framework.
