@@ -1,0 +1,86 @@
+Jira user stories for your A/B Testing Framework
+
+Here’s a set of Jira user stories for your A/B Testing Framework requirements, structured with clear descriptions and acceptance criteria:
+
+User Story 1: Setup A/B Testing Framework with GitHub Actions
+Title: Setup CI/CD for A/B Testing Framework using GitHub Actions
+
+Description:
+As a data engineer,
+I want to set up a CI/CD pipeline for deploying Databricks notebooks using GitHub Actions,
+so that I can automate the deployment process for 1_main_table and notebooks_stage notebooks efficiently.
+
+Acceptance Criteria:
+
+A CI.yml file exists in the repository to automate the deployment of Databricks notebooks.
+The CI pipeline bundles and deploys notebooks using Databricks asset bundling.
+Pipeline logs are available for debugging failed deployments.
+User Story 2: Automate Workflow Execution for A/B Testing
+Title: Create workflows for A/B Testing Notebooks
+
+Description:
+As a data engineer,
+I want to automate the execution of workflows for 1_main_table and notebooks_stage,
+so that I can compare the outputs of both notebooks and store the results in a Delta table.
+
+Acceptance Criteria:
+
+A workflow for 1_main_table notebook is set up in Databricks.
+A workflow for notebooks_stage notebook is set up in Databricks.
+A Delta table is created to store the comparison results between the two workflows.
+Logs for the workflow executions are accessible for monitoring and debugging.
+User Story 3: Implement Data Comparison for A/B Testing
+Title: Add Data Comparison Logic to A/B Testing Framework
+
+Description:
+As a data scientist,
+I want to implement comparison logic to validate rows and columns between the A/B datasets,
+so that I can evaluate differences between the two variants accurately.
+
+Acceptance Criteria:
+
+The comparison logic validates the number of rows in A and B.
+The comparison logic validates the column structures in A and B.
+Any mismatches in rows or columns are logged for further analysis.
+Results are saved to a Delta table with details of the comparison.
+User Story 4: Create Dashboards for A/B Testing Results
+Title: Build Dashboards for A/B Testing Outputs
+
+Description:
+As a business analyst,
+I want to create dashboards in Databricks to visualize A/B testing results,
+so that I can easily interpret and share findings with stakeholders.
+
+Acceptance Criteria:
+
+A Databricks dashboard is created to display key metrics from A/B testing results.
+The dashboard includes visualizations for row and column comparison metrics.
+Results from the Delta table are automatically updated on the dashboard.
+Dashboards are accessible to relevant stakeholders with appropriate permissions.
+Epic: A/B Testing Framework Development
+Summary:
+Build an automated A/B Testing Framework in Databricks, integrated with GitHub Actions, to enable efficient testing, comparison, and visualization of experimental datasets.
+
+Stories:
+
+Setup CI/CD for A/B Testing Framework using GitHub Actions (Story 1).
+Automate Workflow Execution for A/B Testing (Story 2).
+Implement Data Comparison Logic for A/B Testing (Story 3).
+Create Dashboards for A/B Testing Outputs (Story 4).
+Additional Notes
+Dependencies:
+
+Ensure that Databricks CLI and GitHub Actions are properly configured for deployment.
+Databricks permissions should be set for Delta table creation and dashboard access.
+Future Enhancements:
+
+Add support for more variants in the A/B framework.
+Include advanced statistical analysis of results.
+Would you like detailed task breakdowns or technical implementation details for any of these stories?
+
+
+
+
+
+
+
