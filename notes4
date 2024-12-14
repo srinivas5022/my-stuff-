@@ -1,0 +1,150 @@
+Here is the updated set of Jira user stories based on your provided content:
+
+Epic: A/B Testing Framework Development
+Summary:
+Develop an automated A/B Testing Framework in Databricks, integrated with GitHub Actions, to enable efficient testing, comparison, and visualization of experimental datasets.
+
+User Story 1: Setup A/B Testing Framework with GitHub Actions
+Title: Setup CI/CD for A/B Testing Framework using GitHub Actions
+
+Description:
+As a data engineer,
+I want to set up a CI/CD pipeline for deploying Databricks notebooks using GitHub Actions,
+so that I can automate the deployment process for 1_main_table and notebooks_stage notebooks efficiently.
+
+Acceptance Criteria:
+
+A CI.yml file exists in the repository to automate the deployment of Databricks notebooks.
+The CI pipeline bundles and deploys notebooks using Databricks asset bundling.
+Pipeline logs are available for debugging failed deployments.
+User Story 2: Automate Workflow Execution for A/B Testing
+Title: Create Workflows for A/B Testing Notebooks
+
+Description:
+As a data engineer,
+I want to automate the execution of workflows for 1_main_table and notebooks_stage,
+so that I can compare the outputs of both notebooks and store the results in a Delta table.
+
+Acceptance Criteria:
+
+A workflow for the 1_main_table notebook is set up in Databricks.
+A workflow for the notebooks_stage notebook is set up in Databricks.
+A Delta table is created to store the comparison results between the two workflows.
+Logs for the workflow executions are accessible for monitoring and debugging.
+User Story 3: Implement Data Comparison for A/B Testing
+Title: Add Data Comparison Logic to A/B Testing Framework
+
+Description:
+As a data scientist,
+I want to implement comparison logic to validate rows and columns between the A/B datasets,
+so that I can evaluate differences between the two variants accurately.
+
+Acceptance Criteria:
+
+The comparison logic validates the number of rows in A and B datasets.
+The comparison logic validates the column structures in A and B datasets.
+Any mismatches in rows or columns are logged for further analysis.
+Results are saved to a Delta table with details of the comparison.
+User Story 4: Create Dashboards for A/B Testing Results
+Title: Build Dashboards for A/B Testing Outputs
+
+Description:
+As a business analyst,
+I want to create dashboards in Databricks to visualize A/B testing results,
+so that I can easily interpret and share findings with stakeholders.
+
+Acceptance Criteria:
+
+A Databricks dashboard is created to display key metrics from A/B testing results.
+The dashboard includes visualizations for row and column comparison metrics.
+Results from the Delta table are automatically updated on the dashboard.
+Dashboards are accessible to relevant stakeholders with appropriate permissions.
+Additional Notes
+Dependencies:
+
+Ensure that Databricks CLI and GitHub Actions are properly configured for deployment.
+Databricks permissions should be set for Delta table creation and dashboard access.
+Future Enhancements:
+
+Add support for more variants in the A/B framework.
+Include advanced statistical analysis of results.
+Let me know if you need further changes or additional details for these user stories!
+
+
+
+
+
+
+You said:
+mplement Data Comparison for A/B Testing using below validation 
+
+Validation Criteria:
+
+Row count variances:
+Baseline: 100
+Test line: 105
+Column count variances:
+Baseline: 2
+Test line: 3
+Column names comparison:
+Baseline: ["id", "name"]
+Test line: ["id", "name", "age"]
+ChatGPT said:
+ChatGPT
+User Story: Implement Data Comparison for A/B Testing
+Title: Add Data Comparison Logic with Validation Criteria for A/B Testing Framework
+
+Description:
+As a data scientist,
+I want to implement data comparison logic to validate row and column differences between the A/B datasets,
+so that I can identify variances in data structure and content between the baseline and test line datasets.
+
+Acceptance Criteria:
+Row Count Validation:
+
+The system should validate the number of rows in the baseline and test line datasets.
+Expected variance:
+Baseline row count: 100
+Test line row count: 105
+Any mismatches in row counts should be logged for further analysis.
+Column Count Validation:
+
+The system should validate the number of columns in the baseline and test line datasets.
+Expected variance:
+Baseline column count: 2
+Test line column count: 3
+Any mismatches in column counts should be logged for further analysis.
+Column Names Comparison:
+
+The system should compare the column names in the baseline and test line datasets.
+Expected results:
+Baseline column names: ["id", "name"]
+Test line column names: ["id", "name", "age"]
+Any discrepancies in column names should be logged for further analysis.
+Result Storage:
+
+The comparison results, including row count variances, column count variances, and column name discrepancies, should be saved in a Delta table for future reference and analysis.
+Debugging and Monitoring:
+
+Logs for the validation process should be accessible to enable debugging and monitoring of the comparison logic.
+Implementation Steps:
+Row Count Validation Logic:
+
+Write a function to count the rows in both datasets and compute the variance.
+If the variance exceeds the expected limit (5 rows in this case), log the discrepancy.
+Column Count Validation Logic:
+
+Write a function to count the columns in both datasets and compute the variance.
+If the variance exceeds the expected difference (1 column in this case), log the discrepancy.
+Column Name Comparison Logic:
+
+Write a function to compare the column names in both datasets.
+Identify any additional or missing column names in the test dataset compared to the baseline dataset.
+Delta Table Integration:
+
+Save the results of the row count, column count, and column name comparisons in a Delta table.
+Testing and Deployment:
+
+Test the comparison logic with sample datasets to ensure the logic works as expected.
+Deploy the comparison logic to the A/B Testing Framework.
+Let me know if you'd like to include any additional details or diagrams for better clarity!
