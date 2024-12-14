@@ -1,0 +1,41 @@
+Title: Create Integration Test for Workflow 1 in Sparta Project
+
+Description:
+
+As a developer,
+I want to create and configure an integration test for Workflow 1 in the Sparta Project,
+So that I can validate the functionality and ensure its output meets the expected standards.
+
+Acceptance Criteria:
+
+Test Workflow 1 Configuration:
+
+The test should verify the functionality of Workflow 1.
+Follow the structure outlined in the provided YAML file:
+Use workflow_output_compare for comparing the baseline and test line workflows.
+Collect sample outputs using workflow_output_collect with the provided SQL template:
+sql
+Copy code
+SELECT * FROM {{ tbl_name }} WHERE id = 1
+Compare sample outputs with data_compare and define expected variances.
+Validation Criteria:
+
+Row count variances:
+Baseline: 100
+Test line: 105
+Column count variances:
+Baseline: 2
+Test line: 3
+Column names comparison:
+Baseline: ["id", "name"]
+Test line: ["id", "name", "age"]
+CI/CD Integration:
+
+Ensure the YAML configuration file is properly added to the project repository.
+Integrate the test into the CI pipeline for automated testing during workflow updates.
+Documentation:
+
+Update the project documentation to include details about the integration test for Workflow 1.
+Add clear instructions for running and validating the test.
+Attachments:
+Include the YAML file or its equivalent configuration details in the project repository.
