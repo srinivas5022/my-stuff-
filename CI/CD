@@ -1,0 +1,27 @@
+Key Components of the CI/CD Pipeline
+Version Control Integration
+
+Developers push changes to a GitHub repository (feature branch).
+Code changes are validated and merged through Pull Requests (PR).
+GitHub Actions automatically trigger workflows on PR completion.
+Workflow Automation
+
+Pipeline Triggers:
+Code push to feature branches.
+Pull request events.
+Steps in the GitHub Actions Workflow:
+Code Validation:
+Linting and formatting checks (e.g., pre-commit hooks).
+Unit Tests Execution:
+Ensure all test cases pass before deployment.
+Databricks Asset Bundling:
+Package notebooks, libraries, and dependencies into deployable bundles.
+Deployment to Databricks:
+Use Databricks CLI to upload assets to the development workspace.
+Deploy and run workflows (jobs).
+Deployment Process
+
+Artifact Deployment:
+Bundled artifacts (notebooks, Python scripts, libraries) are uploaded to an S3 bucket or Artifactory for storage.
+Databricks Job Execution:
+Jobs are triggered in the Databricks Dev environment to validate changes.
