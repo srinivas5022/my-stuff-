@@ -1,0 +1,139 @@
+Asset Bundling in Sparta Framework
+1. What is Asset Bundling?
+Asset Bundling is the process of packaging code, notebooks, libraries, and configurations into a single deployable unit. This bundled package can then be seamlessly deployed to Databricks or other environments, ensuring consistency, reliability, and ease of use.
+
+Key Characteristics of Asset Bundling:
+Packages multiple assets (e.g., Python scripts, Databricks notebooks, dependencies) into a cohesive bundle.
+Enables smooth transfer of assets between environments (development, staging, production).
+Simplifies version control and CI/CD workflows.
+Reduces deployment errors by managing dependencies and configurations.
+2. Use Case for Asset Bundling in Sparta Framework Project
+In the Sparta Framework, asset bundling is used to efficiently manage the deployment of assets within a Databricks development lifecycle.
+
+Specific Use Cases:
+Deployment Automation:
+
+Bundle code, libraries, and notebooks to automate deployment to the Databricks environment using GitHub Actions.
+Environment Consistency:
+
+Ensure consistent deployment across developer workspaces, staging, and production environments.
+Versioned Deployments:
+
+Track versions of the bundled assets to ensure rollback and traceability during deployments.
+Table Cloning Integration:
+
+Bundle and deploy workflows that manage cloning of table schemas and data, ensuring isolated testing environments.
+CI/CD Optimization:
+
+Use asset bundles in CI/CD pipelines to validate, test, and deploy all components as a single unit.
+3. Life Cycle of Asset Bundling
+The asset bundling lifecycle in the Sparta Framework consists of the following stages:
+
+1. Development Stage
+Developers write code and notebooks locally using VS Code with Databricks Extension and Connect.
+Code is version-controlled using GitHub.
+Pre-commit hooks and unit tests ensure code quality before bundling.
+2. Bundling Stage
+Code, libraries, and dependencies are packaged together into a single unit:
+Notebooks (.dbc or .ipynb format).
+Python libraries (packaged as .whl or .egg files).
+Configurations (e.g., environment variables, SQL scripts).
+The bundling process can be automated using Python scripts and the Databricks CLI.
+3. CI/CD Pipeline Stage
+Bundled assets are deployed to Databricks workspaces using GitHub Actions:
+Import bundled notebooks into the workspace.
+Validate table schema and configurations.
+Trigger workflows for testing.
+4. Testing Stage
+Deployed assets are tested in a developer cluster within Databricks.
+Jobs are executed to validate code functionality and data output.
+5. Deployment Stage
+Validated asset bundles are promoted to staging or production environments.
+Jobs and workflows are triggered to manage table clones and ensure smooth execution.
+4. Create a Custom Template for Asset Bundling Using Python
+Below is an example Python script to bundle assets (notebooks, libraries, and configurations) and deploy them to Databricks using the Databricks CLI.
+
+Python Script: Asset Bundling and Deployment
+python
+Copy code
+import os
+import subprocess
+import shutil
+
+# Configuration for bundling and deployment
+WORKSPACE_DIR = "/Workspace/Dev/asset_bundle"
+LOCAL_NOTEBOOKS_DIR = "./notebooks"
+LOCAL_LIBRARIES_DIR = "./libraries"
+BUNDLE_DIR = "./asset_bundle"
+DATABRICKS_HOST = os.getenv("DATABRICKS_HOST")
+DATABRICKS_TOKEN = os.getenv("DATABRICKS_TOKEN")
+
+def create_bundle():
+    """
+    Step 1: Bundle notebooks and libraries into a single directory.
+    """
+    print("Creating asset bundle...")
+    if os.path.exists(BUNDLE_DIR):
+        shutil.rmtree(BUNDLE_DIR)
+    os.makedirs(BUNDLE_DIR)
+    
+    # Copy notebooks
+    notebooks_bundle_path = os.path.join(BUNDLE_DIR, "notebooks")
+    shutil.copytree(LOCAL_NOTEBOOKS_DIR, notebooks_bundle_path)
+    print(f"Notebooks copied to {notebooks_bundle_path}")
+    
+    # Copy libraries
+    libraries_bundle_path = os.path.join(BUNDLE_DIR, "libraries")
+    shutil.copytree(LOCAL_LIBRARIES_DIR, libraries_bundle_path)
+    print(f"Libraries copied to {libraries_bundle_path}")
+    
+    print("Bundle creation complete.")
+
+def deploy_bundle():
+    """
+    Step 2: Deploy the asset bundle to Databricks workspace using CLI.
+    """
+    print("Deploying asset bundle to Databricks...")
+    # Import notebooks to Databricks Workspace
+    notebooks_path = os.path.join(BUNDLE_DIR, "notebooks")
+    command_notebooks = f"databricks workspace import_dir {notebooks_path} {WORKSPACE_DIR}/notebooks --overwrite"
+    subprocess.run(command_notebooks, shell=True, check=True)
+    print("Notebooks imported successfully.")
+
+    # Deploy libraries (as wheel files)
+    libraries_path = os.path.join(BUNDLE_DIR, "libraries")
+    for file in os.listdir(libraries_path):
+        if file.endswith(".whl"):
+            library_path = os.path.join(libraries_path, file)
+            command_libraries = f"databricks libraries install --cluster-id <your-cluster-id> --whl {library_path}"
+            subprocess.run(command_libraries, shell=True, check=True)
+            print(f"Library {file} deployed successfully.")
+
+    print("Deployment complete.")
+
+if __name__ == "__main__":
+    create_bundle()
+    deploy_bundle()
+Script Breakdown
+Bundle Creation (create_bundle):
+
+Collects all notebooks and libraries into a single asset_bundle directory.
+Deployment (deploy_bundle):
+
+Deploys bundled notebooks to the Databricks workspace using databricks workspace import_dir.
+Installs packaged Python libraries (e.g., .whl files) on the Databricks cluster using databricks libraries install.
+Environment Variables:
+
+DATABRICKS_HOST and DATABRICKS_TOKEN are used to authenticate the CLI.
+Execution:
+
+Run the script to package and deploy assets:
+bash
+Copy code
+python asset_bundler.py
+Conclusion
+Asset bundling in the Sparta Framework is a critical process for managing deployment and automation efficiently. By leveraging Python and Databricks CLI:
+
+Developers can bundle notebooks, libraries, and configurations into a cohesive unit.
+CI/CD pipelines can automate deployment for consistent and reliable delivery.
+The lifecycle ensures smooth transitions between development, testing, and production environments.
