@@ -1,0 +1,76 @@
+Sparta Overview
+Sparta defines a software development lifecycle for developing big data applications using Apache Spark on Databricks. This framework allows developers to collaboratively work on notebooks and code modules while maintaining independence and reducing conflicts.
+
+Key Components of Sparta Architecture
+Developer Workspace Setup
+
+Each developer has a personal workspace to write and test code without interfering with shared datasets or production workflows.
+Developers use a local workstation equipped with tools like:
+VS Code with the Databricks Extension.
+Databricks Connect for remote debugging.
+Databricks CLI for workspace and job interactions.
+Git for version control.
+Code edits are synchronized with the Databricks Workspace for execution and validation.
+Code Management (GitHub Integration)
+
+Code is version-controlled in GitHub.
+A CI/CD pipeline using GitHub Actions ensures automated processes:
+Developers push code changes to the repository.
+On PR completion, GitHub Actions trigger workflows to move necessary files (e.g., plan files) to an S3 ingestion bucket for further processing.
+Code is deployed and executed in Databricks for validation.
+Databricks Workflows and Jobs
+
+Workflows (e.g., wf_dev_clone) are used to automate job execution.
+Jobs interact with the workspace to create developer-specific clones of tables and resources, ensuring isolated testing environments.
+Workspace and Schema Management
+
+Developers work in their own workspace directories (e.g., P110101.ide).
+Databricks manages schemas in two key environments:
+Production Configuration (dcors_conf2)
+Development Workspace (pcdm_work)
+Includes stage tables (e.g., table_name_stage) and personal copies (e.g., table_name_p11010) for isolated testing.
+Databricks Asset Bundling
+
+Purpose: Package and deploy Databricks notebooks, libraries, and configurations efficiently.
+Process:
+Assets such as notebooks and dependencies are bundled using Databricks CLI or CI/CD pipelines.
+Bundled assets are deployed to Databricks Workspaces or environments.
+Benefits:
+Simplifies the deployment of multiple notebooks and libraries as a single package.
+Ensures consistency and reliability across environments.
+Reduces manual steps during deployment, improving development efficiency.
+Developer Cluster
+
+Developers use clusters for executing and debugging code.
+Databricks enables seamless execution of notebooks and scripts through synced files from the local development environment.
+Cloning Framework
+
+A critical feature of Sparta is the ability to clone table schemas for developers.
+Cloning allows developers to interact with personal versions of tables without affecting shared data.
+CI/CD Pipeline
+
+CI/CD processes automate:
+Code validation.
+Synchronization with Databricks Workspaces.
+Deployment of validated assets to shared or production environments.
+Terraform may be used to provision infrastructure or manage configurations in Databricks.
+Benefits of Sparta
+Developer Independence
+
+Personal workspaces and table clones ensure developers can test code without interfering with shared resources.
+Efficient Collaboration
+
+Integration with GitHub enables streamlined version control and CI/CD workflows.
+Developers can push changes, run workflows, and validate results efficiently.
+Remote Debugging
+
+Databricks Connect and VS Code integration allow developers to edit, debug, and execute code seamlessly from their local environments.
+Automation
+
+CI/CD pipelines and Databricks Asset Bundling automate code validation, bundling, testing, and deployment.
+Data Safety
+
+The cloning framework ensures that original datasets remain unaffected during development and testing phases.
+Scalable Deployment
+
+Asset Bundling simplifies and standardizes deployment processes across environments.
