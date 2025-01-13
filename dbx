@@ -1,0 +1,217 @@
+Here are the installation steps and documentation for Visual Studio Code, Git CLI, and Databricks CLI for both Mac and Windows operating systems:
+
+1. Visual Studio Code
+For macOS
+Download VS Code:
+
+Visit the official Visual Studio Code website.
+Download the .zip file for macOS.
+Install VS Code:
+
+Open the downloaded .zip file and drag the Visual Studio Code.app file to the Applications folder.
+Launch VS Code:
+
+Open Launchpad or the Applications folder and double-click Visual Studio Code.
+Optional: Add VS Code to PATH:
+
+Open VS Code.
+Press Cmd+Shift+P to open the Command Palette.
+Type Shell Command: Install 'code' command in PATH and press Enter.
+Install Extensions:
+
+Open VS Code.
+Go to the Extensions Marketplace (Cmd+Shift+X).
+Search for and install extensions like Python, GitLens, or Prettier.
+For Windows
+Download VS Code:
+
+Visit the official Visual Studio Code website.
+Download the .exe installer for Windows.
+Install VS Code:
+
+Run the downloaded .exe file.
+Follow the prompts to accept the license agreement.
+Select installation options like:
+Add to PATH (recommended).
+Create a desktop shortcut.
+Launch VS Code:
+
+Open it from the Start menu or desktop shortcut.
+Install Extensions:
+
+Open the Extensions Marketplace (Ctrl+Shift+X).
+Search and install extensions like Python, GitLens, or Prettier.
+2. Git CLI
+For macOS
+Install Git:
+
+Open a terminal and type:
+bash
+Copy code
+git --version
+If Git is not installed, macOS will prompt you to install the Xcode Command Line Tools. Accept the prompt to install Git.
+Optional: Install Git via Homebrew:
+
+Install Homebrew if you haven't already:
+bash
+Copy code
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Use Homebrew to install Git:
+bash
+Copy code
+brew install git
+Verify Installation:
+
+Check the Git version:
+bash
+Copy code
+git --version
+Configure Git:
+
+Set your name and email:
+bash
+Copy code
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+For Windows
+Download Git:
+
+Visit the Git website and download the installer for Windows.
+Install Git:
+
+Run the downloaded .exe file.
+During installation:
+Select the default options unless you have specific preferences.
+Choose the default editor for Git (e.g., VS Code).
+Opt to "Use Git from the command line and also from 3rd-party software."
+Launch Git Bash:
+
+Open Git Bash (installed by default) from the Start menu for a Linux-like shell.
+Verify Installation:
+
+Open a terminal (Command Prompt or Git Bash) and type:
+bash
+Copy code
+git --version
+Configure Git:
+
+Set your name and email:
+bash
+Copy code
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+3. Databricks CLI
+For macOS
+Install Python:
+
+Ensure Python 3.7 or later is installed.
+Verify by typing:
+bash
+Copy code
+python3 --version
+If not installed, use Homebrew:
+bash
+Copy code
+brew install python
+Install Databricks CLI:
+
+Use pip to install the Databricks CLI:
+bash
+Copy code
+pip3 install databricks-cli
+Verify Installation:
+
+Check the Databricks CLI version:
+bash
+Copy code
+databricks --version
+Authenticate Databricks CLI:
+
+Generate a personal access token from Databricks Workspace:
+Go to User Settings → Access Tokens → Generate Token.
+Configure the CLI:
+bash
+Copy code
+databricks configure --token
+Enter the Databricks Host (e.g., https://<workspace>.cloud.databricks.com) and the token.
+For Windows
+Install Python:
+
+Download Python from the official website.
+Install Python and ensure the "Add Python to PATH" option is selected during installation.
+Install Databricks CLI:
+
+Use pip to install the Databricks CLI:
+bash
+Copy code
+pip install databricks-cli
+Verify Installation:
+
+Check the Databricks CLI version:
+bash
+Copy code
+databricks --version
+Authenticate Databricks CLI:
+
+Generate a personal access token from Databricks Workspace:
+Go to User Settings → Access Tokens → Generate Token.
+Configure the CLI:
+bash
+Copy code
+databricks configure --token
+Enter the Databricks Host (e.g., https://<workspace>.cloud.databricks.com) and the token.
+Common Commands
+Visual Studio Code
+Open a folder or file:
+bash
+Copy code
+code <folder_or_file_name>
+Install extensions: Use the Extensions Marketplace in VS Code.
+Git CLI
+Clone a repository:
+bash
+Copy code
+git clone <repository_url>
+Check repository status:
+bash
+Copy code
+git status
+Add files to staging:
+bash
+Copy code
+git add .
+Commit changes:
+bash
+Copy code
+git commit -m "Commit message"
+Push changes:
+bash
+Copy code
+git push
+Databricks CLI
+List clusters:
+bash
+Copy code
+databricks clusters list
+List jobs:
+bash
+Copy code
+databricks jobs list
+Run a job:
+bash
+Copy code
+databricks jobs run-now --job-id <job-id>
+Let me know if you need further clarifications!
+
+
+
+
+
+
+
+
+
+
+
+
+
