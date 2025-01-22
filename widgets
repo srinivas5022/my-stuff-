@@ -1,0 +1,4 @@
+# Create Widgets for filtering
+dbutils.widgets.dropdown("Workspace", "he-bdes-dev", ["he-bdes-dev", "he-bdes-test", "he-bdes-prod"], "Select Workspace")
+dbutils.widgets.text("Test Run", "01-22-2024", "Enter Test Run")
+dbutils.widgets.multiselect("Tables", "table_name", ["table_name", "another_table"], "Select Tables")
