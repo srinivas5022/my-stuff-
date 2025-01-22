@@ -1,0 +1,27 @@
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+
+# Create a mock DataFrame with sample data
+data = [
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+]
+
+columns = ["Test Name", "Base Table", "Workflows Run", "Tables Involved", "Expected Mismatch", "Actual Mismatch"]
+
+# Convert to Spark DataFrame
+df = spark.createDataFrame(data, columns)
+
+# Save the DataFrame as a Delta Table
+delta_path = "/mnt/delta/sparta_dashboard_data"
+df.write.format("delta").mode("overwrite").save(delta_path)
+
+# Register Delta Table in the Metastore
+spark.sql(f"""
+CREATE TABLE IF NOT EXISTS sparta_dashboard_data
+USING DELTA
+LOCATION '{delta_path}'
+""")
