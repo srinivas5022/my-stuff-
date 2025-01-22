@@ -1,0 +1,39 @@
+# Specify the catalog and schema names
+catalog_name = "en_poc_dev"
+schema_name = "sparta_work"
+table_name = "sparta_dashboard"
+
+# Ensure the schema exists in the catalog
+spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.{schema_name}")
+
+# Prepare the data
+data = [
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+    ("01-22-2024 feature/sparta-1 build 3", "table_name_stage", 5, 15, 1500, 2500),
+]
+
+columns = ["Test Name", "Base Table", "Workflows Run", "Tables Involved", "Expected Mismatch", "Actual Mismatch"]
+
+# Create a Spark DataFrame
+df = spark.createDataFrame(data, columns)
+
+# Define the Delta Table path (managed by Unity Catalog)
+table_full_name = f"{catalog_name}.{schema_name}.{table_name}"
+
+# Write the DataFrame to Delta Table
+df.write.format("delta").mode("overwrite").saveAsTable(table_full_name)
+
+# Verify the table creation
+spark.sql(f"DESCRIBE TABLE {table_full_name}").show()
+
+
+SELECT * FROM en_poc_dev.sparta_work.sparta_dashboard;
+
+
+
+
+
+
