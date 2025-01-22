@@ -1,0 +1,34 @@
+# Styled header
+displayHTML("""
+<div style="background-color:#4CAF50; color:white; padding:10px; border-radius:5px; text-align:center;">
+    <h2>Databricks Dashboard</h2>
+</div>
+""")
+
+# Widgets with custom labels
+displayHTML("<h4>Select Workspace</h4>")
+dbutils.widgets.dropdown("Workspace", "he-bdes-dev", ["he-bdes-dev", "he-bdes-test", "he-bdes-prod"], "")
+
+displayHTML("<h4>Enter Test Run</h4>")
+dbutils.widgets.text("Test Run", "01-22-2024", "")
+
+displayHTML("<h4>Select Tables</h4>")
+dbutils.widgets.multiselect("Tables", "table_name_stage", ["table_name_stage", "another_table"], "")
+
+# Status cards
+displayHTML("""
+<div style="display:flex; gap:20px; margin-top:20px;">
+    <div style="background-color:#4CAF50; color:white; padding:20px; border-radius:5px; text-align:center; flex:1;">
+        <h3>Total Workflows Run</h3>
+        <p><b>5</b></p>
+    </div>
+    <div style="background-color:#FF9800; color:white; padding:20px; border-radius:5px; text-align:center; flex:1;">
+        <h3>Total Tables Involved</h3>
+        <p><b>15</b></p>
+    </div>
+    <div style="background-color:#F44336; color:white; padding:20px; border-radius:5px; text-align:center; flex:1;">
+        <h3>Data Variance</h3>
+        <p><b>2500</b></p>
+    </div>
+</div>
+""")
