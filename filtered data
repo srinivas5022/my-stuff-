@@ -1,0 +1,14 @@
+# Retrieve widget values
+workspace = dbutils.widgets.get("Workspace")
+test_run = dbutils.widgets.get("Test Run")
+tables = dbutils.widgets.get("Tables").split(",")
+
+# Filter the Delta Table based on widget values
+filtered_df = spark.sql(f"""
+SELECT * 
+FROM sparta_dashboard_data
+WHERE `Base Table` IN ({','.join([f"'{table}'" for table in tables])})
+""")
+
+# Display results
+display(filtered_df)
