@@ -1,0 +1,24 @@
+-- Step 1: Ensure the schema exists
+CREATE SCHEMA IF NOT EXISTS en_poc_dev.sparta_work;
+
+-- Step 2: Create the Delta table
+CREATE TABLE en_poc_dev.sparta_work.sparta_dashboard (
+    `Test Name` STRING,
+    `Base Table` STRING,
+    `Workflows Run` INT,
+    `Tables Involved` INT,
+    `Expected Mismatch` INT,
+    `Actual Mismatch` INT
+)
+USING DELTA;
+
+-- Step 3: Insert the data into the table
+INSERT INTO en_poc_dev.sparta_work.sparta_dashboard VALUES
+('01-22-2024 feature/sparta-1 build 3', 'table_name_stage', 5, 15, 1500, 2500),
+('01-22-2024 feature/sparta-1 build 3', 'table_name_stage', 5, 15, 1500, 2500),
+('01-22-2024 feature/sparta-1 build 3', 'table_name_stage', 5, 15, 1500, 2500),
+('01-22-2024 feature/sparta-1 build 3', 'table_name_stage', 5, 15, 1500, 2500),
+('01-22-2024 feature/sparta-1 build 3', 'table_name_stage', 5, 15, 1500, 2500);
+
+-- Step 4: Verify the data in the table
+SELECT * FROM en_poc_dev.sparta_work.sparta_dashboard;
