@@ -1,0 +1,31 @@
+# Dropdown widget for Workspace
+dbutils.widgets.dropdown("Workspace", "he-bdes-dev", ["he-bdes-dev", "he-bdes-test", "he-bdes-prod"], "Select Workspace")
+
+# Textbox widget for Test Run
+dbutils.widgets.text("Test Run", "01-22-2024", "Enter Test Run")
+
+# Multiselect widget for Tables
+dbutils.widgets.multiselect("Tables", "table_name_stage", ["table_name_stage", "another_table"], "Select Tables")
+
+
+# Get widget values
+workspace = dbutils.widgets.get("Workspace")
+test_run = dbutils.widgets.get("Test Run")
+tables = dbutils.widgets.get("Tables").split(",")  # Multiselect returns a comma-separated string
+
+# Print values (for debugging)
+print(f"Workspace: {workspace}")
+print(f"Test Run: {test_run}")
+print(f"Tables: {tables}")
+
+
+# Use widget values to filter data dynamically
+query = f"""
+SELECT * 
+FROM en_poc_dev.sparta_work.sparta_dashboard
+WHERE `Base Table` IN ({','.join([f"'{table}'" for table in tables])})
+"""
+filtered_df = spark.sql(query)
+
+# Display the filtered data
+display(filtered_df)
