@@ -1,5 +1,9 @@
-Due to the ongoing challenges we are currently facing, I would like to inform you of a potential impact on the quality of our demo scheduled for tomorrow. While significant progress has been made, we are encountering issues that require additional time for thorough testing and validation of the new functionalities.
+https://towardsdatascience.com/using-neo4j-with-pyspark-on-databricks-eb3d127f2245/
 
-To ensure that the demo meets the expected standards and provides a seamless experience, I kindly request that we treat this as a partial red flag and consider moving the demo to next week. This extension will allow us to address the identified issues and retest all functionalities comprehensively.
+Choose the Best Integration Approach
+Approach	Method	Pros	Cons
+Spark Connector	Use Neo4j Spark Connector to write data directly from Databricks	Fast, scalable, direct integration	Requires installing connector in Databricks
+CSV Export & APOC Import	Export CSV from Databricks, then use Neo4j’s APOC procedures to import	Simple, good for batch loads	More steps, manual file handling
+REST API (Cypher Queries)	Use Databricks to send Cypher queries via Neo4j REST API	Flexible, real-time writes	Slower than bulk ingestion
+👉 Recommended Approach: Use Neo4j Spark Connector for direct integration.
 
-Please let me know your thoughts or if you'd like to discuss this further. Your understanding and support in maintaining the quality of our deliverables are greatly appreciated.
