@@ -7,3 +7,6 @@ CSV Export & APOC Import	Export CSV from Databricks, then use Neo4j’s APOC pro
 REST API (Cypher Queries)	Use Databricks to send Cypher queries via Neo4j REST API	Flexible, real-time writes	Slower than bulk ingestion
 👉 Recommended Approach: Use Neo4j Spark Connector for direct integration.
 
+
+
+https://medium.com/@maheshwaran.dataengineer/data-ingestion-neo4j-spark-connector-6d25860b17fb
