@@ -1,0 +1,32 @@
+org.neo4j:neo4j-spark-connector_2.12:4.1.3
+
+
+from pyspark.sql import SparkSession
+
+# Initialize Spark Session with Neo4j Connector
+spark = SparkSession.builder \
+    .appName("DatabricksToNeo4j") \
+    .config("spark.jars.packages", "org.neo4j:neo4j-spark-connector_2.12:4.1.3") \
+    .getOrCreate()
+
+
+# Load Delta Table from Unity Catalog
+df = spark.read.format("delta").load("dbfs:/mnt/delta/transactions")
+
+# Show sample data
+df.show()
+
+
+df.write \
+    .format("org.neo4j.spark.DataSource") \
+    .option("url", "bolt://<NEO4J_IP>:7687") \
+    .option("authentication.basic.username", "neo4j") \
+    .option("authentication.basic.password", "password") \
+    .option("labels", "Transaction") \
+    .mode("Append") \
+    .save()
+
+
+MATCH (u:User), (p:Product)
+WHERE u.id = p.product_id
+MERGE (u)-[:PURCHASED {date: p.date}]->(p);
