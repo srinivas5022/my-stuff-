@@ -1,0 +1,36 @@
+from pyspark.sql import SparkSession
+from neo4j import GraphDatabase
+
+# Initialize Spark Session
+spark = SparkSession.builder.appName("DatabricksToNeo4j").getOrCreate()
+
+# Print Spark Version
+print(f"Apache Spark Version: {spark.version}")
+
+# JDBC Connection Properties for Databricks
+jdbc_url = "jdbc:spark://<DATABRICKS-HOST>:443;httpPath=<CLUSTER-PATH>;AuthMech=3"
+connection_properties = {
+    "user": "token",
+    "password": "<DATABRICKS-TOKEN>",
+    "driver": "com.databricks.client.jdbc.Driver"
+}
+
+# Load Data from Databricks Table
+df = spark.read.jdbc(url=jdbc_url, table="transactions", properties=connection_properties)
+df.show()
+
+# Neo4j Connection Details
+neo4j_uri = "bolt://<NEO4J_IP>:7687"
+neo4j_user = "neo4j"
+neo4j_password = "password"
+
+# Function to Fetch Neo4j Version
+def get_neo4j_version(uri, user, password):
+    with GraphDatabase.driver(uri, auth=(user, password)) as driver:
+        with driver.session() as session:
+            result = session.run("CALL dbms.components() YIELD name, versions RETURN name, versions")
+            for record in result:
+                print(f"Neo4j Version: {record['versions'][0]}")
+
+# Print Neo4j Version
+get_neo4j_version(neo4j_uri, neo4j_user, neo4j_password)
